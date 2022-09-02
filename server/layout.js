@@ -3,6 +3,10 @@ const assets = require('../common/assets');
 const initScript = require('./initScript');
 
 module.exports = function(state, body = '') {
+  const custom_css = state.ui.assets.custom_css !== ''
+    ? html`<link rel="stylesheet" type="text/css" href="${state.ui.assets.custom_css}" />`
+    : ''
+
   return html`
     <!DOCTYPE html>
     <html lang="${state.locale}">
@@ -40,6 +44,7 @@ module.exports = function(state, body = '') {
           type="text/css"
           href="${assets.get('app.css')}"
         />
+        ${custom_css}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
